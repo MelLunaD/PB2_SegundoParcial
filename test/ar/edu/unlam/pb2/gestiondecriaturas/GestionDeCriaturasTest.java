@@ -6,14 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GestionDeCriaturasTest {
+	public GestionDeCriaturas gestion;
 
 	@Before
 	public void setUp() throws Exception {
+		gestion = new GestionDeCriaturas();
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void queSePuedaCrearUnaGestionDeCriaturas() {
+		assertNotNull(gestion);
 	}
-
 }
