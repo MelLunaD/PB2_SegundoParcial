@@ -23,8 +23,13 @@ public class GestionDeCriaturasTest {
 	}
 	
 	@Test
-	public void queSePuedaRegistrarUnMaestroElemental() {
+	public void queSePuedaRegistrarYObtenerUnMaestroElemental() {
 		MaestroElemental ashKetchum = new MaestroElemental(nombreElegido, nivelDeMaestriaElegido, miElemento);
-		//gestion.agregarMaestroElemental(ashKetchum);
+		gestion.agregarMaestroElemental(ashKetchum);
+		
+		MaestroElemental maestroEsperado = ashKetchum;
+		MaestroElemental maestroObtenido = gestion.obtenerMaestroElemental(this.nombreElegido);
+		
+		assertTrue( maestroEsperado.equals(maestroObtenido) );
 	}
 }
