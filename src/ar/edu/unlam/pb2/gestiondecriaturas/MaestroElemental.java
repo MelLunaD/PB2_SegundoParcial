@@ -11,6 +11,12 @@ public class MaestroElemental {
 
 	public MaestroElemental(String nombre, Integer nivelDeMaestria, Elementos afinidadElemental) {
 		this.nombre = nombre;
+		this.maestria = nivelDeMaestria;
+		this.afinidad = afinidadElemental;
+	}
+
+	public HashMap<String, Criatura> getColeccionDeCriaturas() {
+		return this.coleccionDeCriaturas;
 	}
 
 	public String getNombre() {
@@ -23,10 +29,6 @@ public class MaestroElemental {
 
 	public Elementos getAfinidadElemental() {
 		return this.afinidad;
-	}
-
-	public HashMap<String, Criatura> getColeccionDeCriaturas() {
-		return this.coleccionDeCriaturas;
 	}
 
 	@Override

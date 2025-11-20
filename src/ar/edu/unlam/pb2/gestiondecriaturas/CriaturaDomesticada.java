@@ -10,5 +10,4 @@ public class CriaturaDomesticada extends Criatura {
 	public void volverInestable() {
 		this.estaInestable = false;
 	}
-
 }
