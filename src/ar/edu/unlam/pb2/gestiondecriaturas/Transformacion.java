@@ -61,4 +61,9 @@ public abstract class Transformacion implements InterfaceCriatura {
     public InterfaceCriatura getCriaturaBase() {
         return criatura.getCriaturaBase();
     }
+    
+    @Override
+	public void setEnergia(Integer energia) {
+		criatura.setEnergia(energia);
+	}
 }

@@ -10,6 +10,7 @@ public interface InterfaceCriatura {
     void pacificar();
     void volverInestable();
     void aumentarEnergia(Integer cantidad);
+    public void setEnergia(Integer energia);
     
     void setAfinidadTemporal(Elementos afinidadTemporal);
     InterfaceCriatura getCriaturaBase();

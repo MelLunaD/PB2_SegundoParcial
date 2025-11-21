@@ -3,7 +3,7 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 import java.util.HashMap;
 
 public class GestionDeCriaturas {
-	private HashMap<String, MaestroElemental> listaDeMaestros = new HashMap<String, MaestroElemental> ();
+	private HashMap<String, MaestroElemental> listaDeMaestros = new HashMap<String, MaestroElemental>();
 	
 	public void agregarMaestroElemental(MaestroElemental maestro) {
 		listaDeMaestros.put(maestro.getNombre(), maestro);
@@ -36,4 +36,31 @@ public class GestionDeCriaturas {
             System.err.println("ERROR DE DATOS: " + error.getMessage());
         }
     }
+	
+	public void interactuarCriaturas(String nombreMaestro1, String nombreCriatura1, String nombreMaestro2, String nombreCriatura2) {
+		InterfaceCriatura criatura1 = obtenerCriatura(nombreMaestro1, nombreCriatura1);
+		InterfaceCriatura criatura2 = obtenerCriatura(nombreMaestro2, nombreCriatura2);
+		
+		if (criatura1 == null || criatura2 == null || criatura1.equals(criatura2)) {
+			System.err.println("ERROR: No se puede interactuar. Criaturas no encontradas o son la misma.");
+			return;
+		}
+		
+		// Instancia y usa el GestorDeInteracciones
+		GestorDeInteracciones gestorInteracciones = new GestorDeInteracciones();
+		
+		gestorInteracciones.interactuarCriaturas(criatura1, criatura2);
+		
+		System.out.println("Interacción entre [" + criatura1.getNombre() + "] y [" + criatura2.getNombre() + "] completada.");
+	}
+
+	private InterfaceCriatura obtenerCriatura(String nombreMaestro, String nombreCriatura) {
+		MaestroElemental maestro = this.listaDeMaestros.get(nombreMaestro);
+        
+        if (maestro == null) {
+            return null;
+        }
+        
+        return maestro.obtenerCriatura(nombreCriatura);
+	}
 }

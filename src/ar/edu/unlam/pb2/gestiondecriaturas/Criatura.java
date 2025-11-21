@@ -66,6 +66,10 @@ public abstract class Criatura implements InterfaceCriatura{
 			return;
 		}
 		
+		if( this instanceof CriaturaAncestral && energia < 100 ) {
+			energia = 100;
+		}
+		
 		this.energia = energia;
 	}
 	

@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MaestroElementalTest {
-	public String nombreElegido = "Ash";
-	public Integer nivelDeMaestriaElegido = 22;
-	Elementos miElemento = Elementos.FUEGO;
-	public MaestroElemental maestro;
+	private String nombreElegido = "Ash";
+	private Integer nivelDeMaestriaElegido = 22;
+	private Elementos miElemento = Elementos.FUEGO;
+	private MaestroElemental maestro;
 	
 	@Before
 	public void setUp() throws Exception {

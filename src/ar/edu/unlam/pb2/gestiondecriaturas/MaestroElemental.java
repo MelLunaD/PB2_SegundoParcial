@@ -69,6 +69,10 @@ public class MaestroElemental {
 	public Elementos getAfinidadElemental() {
 		return this.afinidad;
 	}
+	
+	public InterfaceCriatura obtenerCriatura(String nombreCriatura) {
+	    return this.coleccionDeCriaturas.get(nombreCriatura);
+	}
 
 	@Override
 	public int hashCode() {
