@@ -33,8 +33,8 @@ public abstract class Transformacion implements InterfaceCriatura {
     }
     
     @Override
-    public void pacificar() {
-        criatura.pacificar();
+    public Boolean pacificar() {
+        return criatura.pacificar();
     }
     
     @Override

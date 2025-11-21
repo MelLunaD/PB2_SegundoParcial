@@ -8,17 +8,16 @@ public class CriaturaDomesticada extends Criatura {
 	}
 	
 	public void volverInestable() {
-		this.estaInestable = false;
 	}
 
 	@Override
 	public Integer getEnergia() {
-		return this.energia;
+		return super.getEnergia();
 	}
 
 	@Override
 	public Elementos getAfinidad() {
-		return this.afinidad;
+		return super.getAfinidad();
 	}
 
 	@Override
@@ -27,6 +26,7 @@ public class CriaturaDomesticada extends Criatura {
 	}
 	
 	@Override
-	public void pacificar() {
+	public Boolean pacificar() {
+		return true;
 	}
 }

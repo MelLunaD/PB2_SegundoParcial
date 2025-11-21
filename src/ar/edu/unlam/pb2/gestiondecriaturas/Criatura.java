@@ -3,7 +3,7 @@ import java.util.Objects;
 
 public abstract class Criatura implements InterfaceCriatura{
 	public static final Boolean INESTABLE = true;
-	public static final Boolean TRANQUILO = false;
+	public static final Boolean TRANQUILA = false;
 	protected String nombre;
 	protected Integer energia;
 	protected Elementos afinidad;
@@ -12,13 +12,24 @@ public abstract class Criatura implements InterfaceCriatura{
 	protected Integer maestriaMinimaRequerida;
 	
 	public Criatura(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
+		inicializarConstructorDeCriatura(nombre, energia, afinidad, maestriaMinima);
+	}
+	
+	public Criatura(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima, Boolean inestable) {
+		inicializarConstructorDeCriatura(nombre, energia, afinidad, maestriaMinima);
+		this.estaInestable = inestable;
+	}
+	
+	private void inicializarConstructorDeCriatura(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
 		this.nombre = nombre;
 		this.afinidad = afinidad;
 		this.estaInestable = false;
 		this.maestriaMinimaRequerida = maestriaMinima;
 		
-		if(energia < 0 || energia > 200)
+		if(energia < 0)
 			this.energia = 0;
+		else if (energia > 200)
+			this.energia = 200;
 		else
 			this.energia = energia;
 	}
@@ -66,10 +77,6 @@ public abstract class Criatura implements InterfaceCriatura{
 			return;
 		}
 		
-		if( this instanceof CriaturaAncestral && energia < 100 ) {
-			energia = 100;
-		}
-		
 		this.energia = energia;
 	}
 	
@@ -102,16 +109,14 @@ public abstract class Criatura implements InterfaceCriatura{
 	public void volverInestable() {
 		this.estaInestable = Criatura.INESTABLE;
 	}
-	
-	public void volverTranquila() {
-		this.estaInestable = Criatura.TRANQUILO;
-	}
 
     @Override
-    public void pacificar() {
+    public Boolean pacificar() {
         if (this.estaInestable) {
-            this.estaInestable = false;
+            this.estaInestable = Criatura.TRANQUILA;
         }
+
+        return true;
     }
     
     @Override
@@ -126,4 +131,11 @@ public abstract class Criatura implements InterfaceCriatura{
     
     @Override
     public abstract void entrenar(Integer nivelDeMaestriaDelMaestro) throws EntrenamientoExtremoException;
+
+	public void setMaestriaMinimaRequerida(Integer maestria) {
+		if ( maestria < 1 || maestria > 50)
+			return;
+		
+		this.maestriaMinimaRequerida = maestria;
+	}
 }

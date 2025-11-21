@@ -3,27 +3,52 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 import java.util.Random;
 
 public class CriaturaSalvaje extends Criatura {
-	// Son mas dificiles de controlar
-	// Cuando se intenta entrenarlas, pueden aumentar su energía de manera
-	//  impredecible (deben lanzar una unchecked exception cuando superan 200).
+	private static final Random RANDOM = new Random();
+	private Boolean esTest;
+	private Boolean testBoolean;
 	
 	public CriaturaSalvaje(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
-		super(nombre, energia, afinidad, maestriaMinima);
+		super(nombre, energia, afinidad, maestriaMinima, true);
+		this.esTest = false;
+		this.testBoolean = false;
+	}
+	
+	public CriaturaSalvaje(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima, Boolean esTest, Boolean testBoolean) {
+		super(nombre, energia, afinidad, maestriaMinima, true);
+		this.esTest = true;
+		this.testBoolean = testBoolean;
 	}
 
 	@Override
 	public Integer getEnergia() {
-		return this.energia;
+		return super.getEnergia();
 	}
 
 	@Override
 	public Elementos getAfinidad() {
-		return this.afinidad;
+		return super.getAfinidad();
 	}
+	
+	@Override
+    public Boolean pacificar() {
+		if (esTest) {
+			if ( testBoolean ) {
+				super.pacificar();
+				return true;
+			} else return false;
+		}
+		
+		if (RANDOM.nextBoolean()) {
+			super.pacificar();
+			return true;
+		}
+
+		return false;
+    }
 
 	@Override
 	public void entrenar(Integer nivelDeMaestriaDelMaestro) {
-		Integer aumento = (1 + new Random().nextInt()) * 5;
+		Integer aumento = 15 + RANDOM.nextInt(86);
 		
 		if ( this.energia + aumento > 200 ) {
 			throw new IllegalStateException("La Criatura Salvaje excedió el límite de energía (200) durante el entrenamiento.");

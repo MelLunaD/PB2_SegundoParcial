@@ -7,7 +7,7 @@ public interface InterfaceCriatura {
     Boolean getEstaInestable();
     
     void entrenar(Integer nivelDeMaestriaDelMaestro) throws EntrenamientoExtremoException;
-    void pacificar();
+    Boolean pacificar();
     void volverInestable();
     void aumentarEnergia(Integer cantidad);
     public void setEnergia(Integer energia);

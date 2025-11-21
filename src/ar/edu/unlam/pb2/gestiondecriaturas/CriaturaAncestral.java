@@ -13,25 +13,19 @@ public class CriaturaAncestral extends Criatura {
 	}
 	
 	public void setEnergia(Integer energia) {
-		if ( energia < 0 || energia > 200 ) {
-			return;
-		}
+		int energiaAjustada = Math.min(energia, 200);
 		
-		if ( energia < CriaturaAncestral.MINIMA_ENERGIA) {
-			this.energia = CriaturaAncestral.MINIMA_ENERGIA;
-		} else {
-			this.energia = energia;
-		}
+		this.energia = Math.max(energiaAjustada, CriaturaAncestral.MINIMA_ENERGIA);
 	}
 
 	@Override
 	public Integer getEnergia() {
-		return this.energia;
+		return super.getEnergia();
 	}
 
 	@Override
 	public Elementos getAfinidad() {
-		return this.afinidad;
+		return super.getAfinidad();
 	}
 
 	@Override
