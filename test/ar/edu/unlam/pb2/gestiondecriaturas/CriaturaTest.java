@@ -14,11 +14,11 @@ public class CriaturaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		unagi = new CriaturaSalvaje("Unagi", 150, Elementos.AGUA, Criatura.INESTABLE);
-		momo = new CriaturaAncestral("Momo", 50, Elementos.AIRE, Criatura.TRANQUILO);
-		appa = new CriaturaDomesticada("Appa", 150, Elementos.AIRE);
-		shaw = new CriaturaAncestral("Shaw", 200, Elementos.FUEGO, Criatura.INESTABLE);
-		topo = new CriaturaSalvaje("Topo", 100, Elementos.TIERRA, Criatura.TRANQUILO);
+		unagi = new CriaturaSalvaje("Unagi", 150, Elementos.AGUA, 40);
+		momo = new CriaturaAncestral("Momo", 50, Elementos.AIRE, 15);
+		appa = new CriaturaDomesticada("Appa", 150, Elementos.AIRE, 30);
+		shaw = new CriaturaAncestral("Shaw", 200, Elementos.FUEGO, 45);
+		topo = new CriaturaSalvaje("Topo", 100, Elementos.TIERRA, 30);
 	}
 
 	@Test
@@ -37,4 +37,7 @@ public class CriaturaTest {
 		assertEquals(Elementos.AGUA, unagi.getAfinidad());
 		assertEquals(Criatura.INESTABLE, unagi.getEstaInestable());
 	}
+	
+	// Para los Tests que arrojan una Exception
+	// @Test(expected = MaestriaInsuficienteException.class)
 }

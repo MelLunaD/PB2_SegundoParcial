@@ -37,7 +37,10 @@ public class CriaturaAncestral extends Criatura {
 	@Override
 	public void entrenar(Integer nivelDeMaestriaDelMaestro) throws EntrenamientoExtremoException {
 		if (nivelDeMaestriaDelMaestro >= UMBRAL_MAESTRIA_EXTREMA) {
-            throw new EntrenamientoExtremoException("La Criatura Ancestral " + this.nombre + " es sensible al entrenamiento de Maestría " + nivelDeMaestriaDelMaestro + ".");
+            throw new EntrenamientoExtremoException(
+            		"La Criatura Ancestral [" + this.nombre + "] es sensible al entrenamiento de Maestría Nivel " + nivelDeMaestriaDelMaestro + 
+                    ". El umbral de riesgo es " + UMBRAL_MAESTRIA_EXTREMA + "."
+            );
         }
         
         this.aumentarEnergia(10);

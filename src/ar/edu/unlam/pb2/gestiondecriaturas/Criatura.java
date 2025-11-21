@@ -1,6 +1,4 @@
 package ar.edu.unlam.pb2.gestiondecriaturas;
-
-import java.util.HashMap;
 import java.util.Objects;
 
 public abstract class Criatura implements InterfaceCriatura{

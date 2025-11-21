@@ -26,7 +26,7 @@ public class CriaturaSalvaje extends Criatura {
 		Integer aumento = (1 + new Random().nextInt()) * 5;
 		
 		if ( this.energia + aumento > 200 ) {
-			throw new EnergiaExcedidaException("La Criatura Salvaje " + this.nombre + " excedió el límite de energía de 200 durante el entrenamiento.");
+			throw new IllegalStateException("La Criatura Salvaje excedió el límite de energía (200) durante el entrenamiento.");
 		}
 		
 		this.aumentarEnergia(aumento);

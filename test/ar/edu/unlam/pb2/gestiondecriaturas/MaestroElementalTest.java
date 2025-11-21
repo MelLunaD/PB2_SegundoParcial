@@ -25,4 +25,7 @@ public class MaestroElementalTest {
 	public void queAlCrearElMaestroSeGuardenSusDatos() {
 		assertTrue(maestro.getNombre().equals(nombreElegido));
 	}
+	
+	// Para los Tests que arrojan una Exception
+	// @Test(expected = MaestriaInsuficienteException.class)
 }
