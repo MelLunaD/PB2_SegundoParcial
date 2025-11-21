@@ -1,14 +1,13 @@
 package ar.edu.unlam.pb2.gestiondecriaturas;
 
-public class AscensoDelViento implements Transformacion {
+public class AscensoDelViento extends Transformacion {
+	
+    public AscensoDelViento(Criatura criatura) {
+    	super(criatura);
+    }
 
-	@Override
-	public Integer modificarEnergia(Integer energiaActual) {
-		return energiaActual;
-	}
-
-	@Override
-	public void aplicarEfectoACriatura(Criatura criatura) {
-		criatura.setAfinidadTemporal(Elementos.AIRE);
-	}
+    @Override
+    public Elementos getAfinidad() {
+        return Elementos.AIRE;
+    }
 }

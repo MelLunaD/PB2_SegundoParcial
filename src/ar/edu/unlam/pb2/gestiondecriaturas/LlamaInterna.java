@@ -1,18 +1,23 @@
 package ar.edu.unlam.pb2.gestiondecriaturas;
 
-public class LlamaInterna implements Transformacion {
+public class LlamaInterna extends Transformacion {
+	
+    public LlamaInterna(Criatura criatura) {
+        super(criatura);
 
-	@Override
-	public Integer modificarEnergia(Integer energiaActual) {
-		return energiaActual;
-	}
+        if (getAfinidad() != Elementos.FUEGO) {
+             criatura.volverInestable(); 
+        }
+    }
 
-	@Override
-	public void aplicarEfectoACriatura(Criatura criatura) {
-		if( criatura.getAfinidad() == Elementos.FUEGO ) {
-			criatura.aumentarEnergia(30);
-		} else {
-			criatura.volverInestable();
-		}
-	}
+    @Override
+    public Integer getEnergia() {
+        int energiaBase = this.criatura.getEnergia();
+        
+        if (this.criatura.getAfinidad() == Elementos.FUEGO) {
+            energiaBase += 30;
+        }
+        
+        return energiaBase;
+    }
 }

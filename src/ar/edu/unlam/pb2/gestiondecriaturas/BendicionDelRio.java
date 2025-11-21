@@ -1,12 +1,17 @@
 package ar.edu.unlam.pb2.gestiondecriaturas;
 
-public class BendicionDelRio implements Transformacion {
-	@Override
-	public Integer modificarEnergia(Integer energiaActual) {
-        return Math.min(energiaActual * 2, 180);
-	}
+public class BendicionDelRio extends Transformacion {
 
-	@Override
-	public void aplicarEfectoACriatura(Criatura criatura) {
-	}
+    public BendicionDelRio(Criatura criatura) {
+        super(criatura);
+    }
+
+    @Override
+    public Integer getEnergia() {
+        int energiaAnterior = this.criatura.getEnergia();
+        
+        int energiaNueva = energiaAnterior * 2;
+        
+        return Math.min(energiaNueva, 180);
+    }
 }
