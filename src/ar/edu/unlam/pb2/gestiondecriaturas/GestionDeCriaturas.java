@@ -46,7 +46,6 @@ public class GestionDeCriaturas {
 			return;
 		}
 		
-		// Instancia y usa el GestorDeInteracciones
 		GestorDeInteracciones gestorInteracciones = new GestorDeInteracciones();
 		
 		gestorInteracciones.interactuarCriaturas(criatura1, criatura2);

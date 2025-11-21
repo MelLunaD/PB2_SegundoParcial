@@ -3,7 +3,7 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 import java.util.Random;
 
 public class CriaturaSalvaje extends Criatura {
-	private static final Random RANDOM = new Random();
+	private Random randomGenerator;
 	private Boolean esTest;
 	private Boolean testBoolean;
 	
@@ -11,6 +11,7 @@ public class CriaturaSalvaje extends Criatura {
 		super(nombre, energia, afinidad, maestriaMinima, true);
 		this.esTest = false;
 		this.testBoolean = false;
+		this.randomGenerator = new Random();
 	}
 	
 	public CriaturaSalvaje(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima, Boolean esTest, Boolean testBoolean) {
@@ -29,8 +30,14 @@ public class CriaturaSalvaje extends Criatura {
 		return super.getAfinidad();
 	}
 	
+	public void setRandomGenerator(Random randomGenerator) {
+	    this.randomGenerator = randomGenerator;
+	}
+	
 	@Override
     public Boolean pacificar() {
+		
+		// Usamos una variable de control para forzar el Booleano y poder Testearlo
 		if (esTest) {
 			if ( testBoolean ) {
 				super.pacificar();
@@ -38,7 +45,7 @@ public class CriaturaSalvaje extends Criatura {
 			} else return false;
 		}
 		
-		if (RANDOM.nextBoolean()) {
+		if (randomGenerator.nextBoolean()) {
 			super.pacificar();
 			return true;
 		}
@@ -48,7 +55,7 @@ public class CriaturaSalvaje extends Criatura {
 
 	@Override
 	public void entrenar(Integer nivelDeMaestriaDelMaestro) {
-		Integer aumento = 15 + RANDOM.nextInt(86);
+		Integer aumento = 15 + randomGenerator.nextInt(86);
 		
 		if ( this.energia + aumento > 200 ) {
 			throw new IllegalStateException("La Criatura Salvaje excedió el límite de energía (200) durante el entrenamiento.");

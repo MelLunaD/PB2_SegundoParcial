@@ -39,16 +39,19 @@ public abstract class Criatura implements InterfaceCriatura{
 		return Objects.hash(nombre);
 	}
 
+	// En Criatura.java
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Criatura other = (Criatura) obj;
-		return Objects.equals(nombre, other.nombre);
+	    if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    
+	    if (!(obj instanceof Criatura)) 
+	        return false;
+	    
+	    Criatura other = (Criatura) obj;
+	    return Objects.equals(nombre, other.nombre);
 	}
 	
 	public String getNombre() {
