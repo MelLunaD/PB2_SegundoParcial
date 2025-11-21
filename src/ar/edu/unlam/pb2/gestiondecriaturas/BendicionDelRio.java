@@ -2,13 +2,13 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 
 public class BendicionDelRio extends Transformacion {
 
-    public BendicionDelRio(Criatura criatura) {
+    public BendicionDelRio(InterfaceCriatura criatura) {
         super(criatura);
     }
 
     @Override
     public Integer getEnergia() {
-        int energiaAnterior = this.criatura.getEnergia();
+        int energiaAnterior = super.getEnergia();
         
         int energiaNueva = energiaAnterior * 2;
         

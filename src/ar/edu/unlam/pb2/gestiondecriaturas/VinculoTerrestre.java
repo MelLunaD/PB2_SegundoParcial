@@ -2,13 +2,13 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 
 public class VinculoTerrestre extends Transformacion {
 	
-    public VinculoTerrestre(Criatura criatura) {
+    public VinculoTerrestre(InterfaceCriatura criatura) {
     	super(criatura);
     }
 
     @Override
     public Integer getEnergia() {
-        int energiaBase = this.criatura.getEnergia();
+        int energiaBase = super.getEnergia();
     	
     	return Math.max(energiaBase, 50);
     }

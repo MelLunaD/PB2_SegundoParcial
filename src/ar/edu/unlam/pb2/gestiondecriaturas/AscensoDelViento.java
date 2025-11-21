@@ -2,7 +2,7 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 
 public class AscensoDelViento extends Transformacion {
 	
-    public AscensoDelViento(Criatura criatura) {
+    public AscensoDelViento(InterfaceCriatura criatura) {
     	super(criatura);
     }
 
