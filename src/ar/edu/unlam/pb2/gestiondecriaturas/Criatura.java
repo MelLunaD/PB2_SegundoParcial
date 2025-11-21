@@ -3,22 +3,26 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 import java.util.HashMap;
 import java.util.Objects;
 
-public abstract class Criatura {
+public abstract class Criatura implements InterfaceCriatura{
 	public static final Boolean INESTABLE = true;
 	public static final Boolean TRANQUILO = false;
 	protected String nombre;
 	protected Integer energia;
 	protected Elementos afinidad;
-	protected Elementos afinidadTemporal;
 	protected Boolean estaInestable;
-	private HashMap<Class<? extends Transformacion>, Transformacion> transformacionesActivas;
+	protected Elementos afinidadTemporal;
+	protected Integer maestriaMinimaRequerida;
 	
-	public Criatura(String nombre, Integer energia, Elementos afinidad, Boolean estaInestable) {
+	public Criatura(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
 		this.nombre = nombre;
-		this.energia = energia;
 		this.afinidad = afinidad;
-		this.estaInestable = estaInestable;
-		transformacionesActivas = new HashMap<Class<? extends Transformacion>, Transformacion>();
+		this.estaInestable = false;
+		this.maestriaMinimaRequerida = maestriaMinima;
+		
+		if(energia < 0 || energia > 200)
+			this.energia = 0;
+		else
+			this.energia = energia;
 	}
 
 	@Override
@@ -41,19 +45,23 @@ public abstract class Criatura {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public Integer getEnergia() {
-		int energiaCalculada = this.energia;
-
-	    for (Transformacion t : this.transformacionesActivas.values()) {
-	        energiaCalculada = t.modificarEnergia(energiaCalculada); 
-	    }
-	    
-	    return Math.min(energiaCalculada, 200);
-	}
+	@Override
+    public Integer getEnergia() {
+        return this.energia; 
+    }
+    
+    @Override
+    public Elementos getAfinidad() {
+        if( this.afinidadTemporal != null ) {
+            return this.afinidadTemporal;
+        }
+        return this.afinidad;
+    }
 	
 	public void setEnergia(Integer energia) {
 		if ( energia < 0 || energia > 200 ) {
@@ -62,22 +70,33 @@ public abstract class Criatura {
 		
 		this.energia = energia;
 	}
-	public Elementos getAfinidad() {
-		if( this.afinidadTemporal != null ) {
-			return this.afinidadTemporal;
-		}
-		
-		return this.afinidad;
-	}
 	
 	public void setAfinidad(Elementos afinidad) {
 		this.afinidad = afinidad;
 	}
+
+	@Override
+    public InterfaceCriatura getCriaturaBase() {
+        return this;
+    }
 	
 	public Boolean getEstaInestable() {
 		return this.estaInestable;
 	}
 	
+	// Métodos de comportamiento
+	
+	@Override
+	public void aumentarEnergia(Integer cantidad) {
+		if (cantidad <= 0) {
+	        return;
+	    }
+	    
+	    int nuevaEnergia = this.energia + cantidad;
+	    this.energia = Math.min(nuevaEnergia, 200);
+	}
+	
+	@Override
 	public void volverInestable() {
 		this.estaInestable = Criatura.INESTABLE;
 	}
@@ -86,23 +105,23 @@ public abstract class Criatura {
 		this.estaInestable = Criatura.TRANQUILO;
 	}
 
-	public void setAfinidadTemporal(Elementos afinidadTemporal) {
-		this.afinidadTemporal = afinidadTemporal;
-	}
-	
-	public void transformar(Transformacion transformacion) {
-		Class<? extends Transformacion> tipoEfecto = transformacion.getClass(); 
-	    this.transformacionesActivas.put(tipoEfecto, transformacion); 
-	    
-	    transformacion.aplicarEfectoACriatura(this);
-	}
+    @Override
+    public void pacificar() {
+        if (this.estaInestable) {
+            this.estaInestable = false;
+        }
+    }
+    
+    @Override
+    public void setAfinidadTemporal(Elementos afinidadTemporal) {
+        this.afinidadTemporal = afinidadTemporal;
+    }
 
-	public void aumentarEnergia(int cantidad) {
-		if (cantidad <= 0) {
-	        return;
-	    }
-	    
-	    int nuevaEnergia = this.energia + cantidad;
-	    this.energia = Math.min(nuevaEnergia, 200);
-	}
+    @Override
+    public Integer getMaestriaMinimaRequerida() {
+        return this.maestriaMinimaRequerida;
+    }
+    
+    @Override
+    public abstract void entrenar(Integer nivelDeMaestriaDelMaestro) throws EntrenamientoExtremoException;
 }

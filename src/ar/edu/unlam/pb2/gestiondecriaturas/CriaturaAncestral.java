@@ -2,11 +2,10 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 
 public class CriaturaAncestral extends Criatura {
 	public static final Integer MINIMA_ENERGIA = 100;
-	// LISTO - Su energía nunca puede bajar de 100.
-	// FALTA - Son extremadamente poderosas, pero sensibles a entrenamientos extremos.
+    private static final Integer UMBRAL_MAESTRIA_EXTREMA = 40;
 
-	public CriaturaAncestral(String nombre, Integer energia, Elementos afinidad, Boolean estaInestable) {
-		super(nombre, energia, afinidad, estaInestable);
+	public CriaturaAncestral(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
+		super(nombre, energia, afinidad, maestriaMinima);
 		
 		if ( energia < MINIMA_ENERGIA ) {
 			this.energia = MINIMA_ENERGIA;
@@ -23,5 +22,24 @@ public class CriaturaAncestral extends Criatura {
 		} else {
 			this.energia = energia;
 		}
+	}
+
+	@Override
+	public Integer getEnergia() {
+		return this.energia;
+	}
+
+	@Override
+	public Elementos getAfinidad() {
+		return this.afinidad;
+	}
+
+	@Override
+	public void entrenar(Integer nivelDeMaestriaDelMaestro) throws EntrenamientoExtremoException {
+		if (nivelDeMaestriaDelMaestro >= UMBRAL_MAESTRIA_EXTREMA) {
+            throw new EntrenamientoExtremoException("La Criatura Ancestral " + this.nombre + " es sensible al entrenamiento de Maestría " + nivelDeMaestriaDelMaestro + ".");
+        }
+        
+        this.aumentarEnergia(10);
 	}
 }
