@@ -3,7 +3,13 @@ package ar.edu.unlam.pb2.gestiondecriaturas;
 import java.util.HashMap;
 
 public class GestionDeCriaturas {
-	private HashMap<String, MaestroElemental> listaDeMaestros = new HashMap<String, MaestroElemental>();
+	private HashMap<String, MaestroElemental> listaDeMaestros;
+	private GestorDeReportes gestorReportes;
+
+	public GestionDeCriaturas() {
+	    this.listaDeMaestros = new HashMap<String, MaestroElemental>();
+	    this.gestorReportes = new GestorDeReportes(this.listaDeMaestros);
+	}
 	
 	public void agregarMaestroElemental(MaestroElemental maestro) {
 		listaDeMaestros.put(maestro.getNombre(), maestro);
@@ -13,14 +19,21 @@ public class GestionDeCriaturas {
 		return listaDeMaestros.get(nombreElegido);
 	}
 	
+	private MaestroElemental obtenerMaestro(String nombreMaestro) {
+	    MaestroElemental maestro = this.listaDeMaestros.get(nombreMaestro);
+	    if (maestro == null) {
+	        System.err.println("ERROR: Maestro [" + nombreMaestro + "] no encontrado.");
+	    }
+	    return maestro;
+	}
+	
 	public void intentarEntrenar(String nombreMaestro, String nombreCriatura) {
-        MaestroElemental maestro = listaDeMaestros.get(nombreMaestro);
-        
+        MaestroElemental maestro = obtenerMaestro(nombreMaestro);
+
         if (maestro == null) {
-            System.err.println("❌ ERROR: Maestro " + nombreMaestro + " no encontrado.");
             return;
         }
-
+        
         try {
             maestro.entrenarCriatura(nombreCriatura);
             System.out.println("Criatura [" + nombreCriatura + "] entrenada exitosamente por [" + nombreMaestro + "].");
@@ -36,6 +49,21 @@ public class GestionDeCriaturas {
             System.err.println("ERROR DE DATOS: " + error.getMessage());
         }
     }
+	
+	public void intentarTransformar(String nombreMaestro, String nombreCriatura, Transformacion ritual) {
+        MaestroElemental maestro = obtenerMaestro(nombreMaestro);
+	    
+        if (maestro == null) {
+            return;
+        }
+        
+	    try {
+	        maestro.transformarCriatura(nombreCriatura, ritual);
+	        System.out.println("Criatura [" + nombreCriatura + "] transformada con éxito por [" + nombreMaestro + "].");
+	    } catch (IllegalArgumentException error) {
+	        System.err.println("ERROR DE DATOS: " + error.getMessage());
+	    }
+	}
 	
 	public void interactuarCriaturas(String nombreMaestro1, String nombreCriatura1, String nombreMaestro2, String nombreCriatura2) {
 		InterfaceCriatura criatura1 = obtenerCriatura(nombreMaestro1, nombreCriatura1);
@@ -54,12 +82,18 @@ public class GestionDeCriaturas {
 	}
 
 	private InterfaceCriatura obtenerCriatura(String nombreMaestro, String nombreCriatura) {
-		MaestroElemental maestro = this.listaDeMaestros.get(nombreMaestro);
+        MaestroElemental maestro = obtenerMaestro(nombreMaestro);
         
         if (maestro == null) {
             return null;
         }
         
         return maestro.obtenerCriatura(nombreCriatura);
+	}
+	
+	public InterfaceReportes getReportes() {
+		// Actualiza los reportes por si hay nuevos maestros agregados
+	    this.gestorReportes = new GestorDeReportes(this.listaDeMaestros);
+	    return this.gestorReportes;
 	}
 }
