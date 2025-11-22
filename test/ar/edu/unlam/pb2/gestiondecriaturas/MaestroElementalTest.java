@@ -158,11 +158,7 @@ public class MaestroElementalTest {
 
 	@Test
 	public void quePacificarNoFalleSiSeBuscaUnaCriaturaQueNoExiste() {
-	    try {
-	        maestro.pacificarCriatura("Fantasma");
-	    } catch (Exception e) {
-	        fail("No debería haber lanzado ninguna excepción al buscar una criatura inexistente.");
-	    }
+	    maestro.pacificarCriatura("Fantasma");
 	}
 	
 	// Tests para manejar el hashCode y el equals

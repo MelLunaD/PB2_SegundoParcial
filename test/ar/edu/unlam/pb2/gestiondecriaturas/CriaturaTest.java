@@ -102,7 +102,7 @@ public class CriaturaTest {
 		topo.setAfinidadTemporal(Elementos.TIERRA);
 		assertEquals(Elementos.TIERRA, topo.getAfinidad());
 	}
-	
+
 	@Test
 	public void pacificarCriaturaSalvajeDebeSerExitosaCuandoElTestLoRequiere() {
 		// Usamos una variable de control para forzar el Booleano y poder Testearlo

@@ -116,20 +116,36 @@ public class GestorDeInteraccionesTest {
         
         assertEquals(5, debil.getEnergia().intValue()); // 20 - 15 = 5
     }
-
-    @Test
-    public void queInteraccionOpuestaAireYTierraGenereInestabilidad() {
-        gestor.interactuarCriaturas(appa, topo);
+    
+    private void assertInteraccion(Elementos a1, Elementos a2, boolean debeSerInestable) {
+        CriaturaAncestral c1 = new CriaturaAncestral("C1", 100, a1, MAESTRIA_MIN); 
+        CriaturaAncestral c2 = new CriaturaAncestral("C2", 100, a2, MAESTRIA_MIN);
         
-        assertFalse(appa.getEstaInestable());
-        assertTrue(topo.getEstaInestable());
+        c1.pacificar();
+        c2.pacificar(); 
+
+        InteraccionPorAfinidad afinidadTest = new InteraccionPorAfinidad();
+        afinidadTest.interactuar(c1, c2);
+
+        if (debeSerInestable) {
+            assertTrue("Fallo en el par opuesto: " + a1 + " vs " + a2, c1.getEstaInestable());
+            assertTrue("Fallo en el par opuesto: " + a1 + " vs " + a2, c2.getEstaInestable());
+        } else {
+            assertFalse("Debería ser neutro: " + a1 + " vs " + a2, c1.getEstaInestable());
+            assertFalse("Debería ser neutro: " + a1 + " vs " + a2, c2.getEstaInestable());
+        }
     }
 
     @Test
-    public void queInteraccionOpuestaTierraYAireGenereInestabilidad() {
-        gestor.interactuarCriaturas(topo, appa);
+    public void queSonAfinidadesOpuestasCubraTodosLosParesYCasoNeutro() {
+    	// Casos opuestos
+        assertInteraccion(Elementos.AGUA, Elementos.FUEGO, true);
+        assertInteraccion(Elementos.FUEGO, Elementos.AGUA, true);
+        assertInteraccion(Elementos.AIRE, Elementos.TIERRA, true);
+        assertInteraccion(Elementos.TIERRA, Elementos.AIRE, true);
         
-        assertTrue(topo.getEstaInestable());
-        assertFalse(appa.getEstaInestable());
+        // Casos neutros
+        assertInteraccion(Elementos.AGUA, Elementos.TIERRA, false);
+        assertInteraccion(Elementos.FUEGO, Elementos.AIRE, false);
     }
 }
