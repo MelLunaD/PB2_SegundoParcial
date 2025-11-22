@@ -177,12 +177,6 @@ public class TransformacionTest {
 	}
 	
 	@Test
-	public void queLaTransformacionDelegueSetAfinidadTemporal() {
-	    llamaInterna.setAfinidadTemporal(Elementos.AGUA);
-	    assertEquals(Elementos.AGUA, charmander.getAfinidad());
-	}
-	
-	@Test
 	public void queLaTransformacionDelegueSetEnergia() {
 	    llamaInterna.setEnergia(150);
 	    assertEquals((Integer)150, charmander.getEnergia()); 

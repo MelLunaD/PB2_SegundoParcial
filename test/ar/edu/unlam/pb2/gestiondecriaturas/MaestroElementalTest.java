@@ -126,7 +126,7 @@ public class MaestroElementalTest {
 	public void queAlIntentarTransformarUnaCriaturaQueNoPoseeLanceException() {
 	    Transformacion ritual = new BendicionDelRio(unagi); 
 	    
-	    maestro.transformarCriatura("Fantasma", ritual); 
+	    maestro.transformarCriatura("CriaturaQueNoPosee", ritual); 
 	}
 	
 	@Test
@@ -158,7 +158,7 @@ public class MaestroElementalTest {
 
 	@Test
 	public void quePacificarNoFalleSiSeBuscaUnaCriaturaQueNoExiste() {
-	    maestro.pacificarCriatura("Fantasma");
+	    maestro.pacificarCriatura("CriaturaInexistente");
 	}
 	
 	// Tests para manejar el hashCode y el equals

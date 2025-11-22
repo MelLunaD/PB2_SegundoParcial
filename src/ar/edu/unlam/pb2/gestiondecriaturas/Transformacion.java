@@ -46,11 +46,6 @@ public abstract class Transformacion implements InterfaceCriatura {
     public void volverInestable() {
         criatura.volverInestable();
     }
-    
-    @Override
-    public void setAfinidadTemporal(Elementos afinidadTemporal) {
-        criatura.setAfinidadTemporal(afinidadTemporal);
-    }
 
 	@Override
 	public Integer getMaestriaMinimaRequerida() {

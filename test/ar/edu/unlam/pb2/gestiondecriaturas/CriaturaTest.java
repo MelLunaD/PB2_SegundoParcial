@@ -98,9 +98,6 @@ public class CriaturaTest {
 		assertEquals(Elementos.AIRE, topo.getAfinidad());
 		assertTrue(topo.getEstaInestable());
 		assertEquals(45, topo.getMaestriaMinimaRequerida(), 0.01);
-
-		topo.setAfinidadTemporal(Elementos.TIERRA);
-		assertEquals(Elementos.TIERRA, topo.getAfinidad());
 	}
 
 	@Test

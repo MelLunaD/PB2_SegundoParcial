@@ -118,7 +118,7 @@ public class GestionDeCriaturasTest {
 	public void queAtrapeIllegalArgumentExceptionAlIntentarTransformarCriaturaInexistente() {
 	    Transformacion ritual = new BendicionDelRio(appaApto);
 	    
-	    gestion.intentarTransformar("Apto", "Fantasma", ritual);
+	    gestion.intentarTransformar("Apto", "CriaturaInexistente", ritual);
 	}
 
 	// ------------------------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ public class GestionDeCriaturasTest {
 
 	@Test
 	public void queObtenerCriaturaDevuelvaNullSiLaCriaturaNoExiste() {
-	    InterfaceCriatura criaturaObtenida = gestion.obtenerCriatura("Apto", "Fantasma");
+	    InterfaceCriatura criaturaObtenida = gestion.obtenerCriatura("Apto", "CriaturaInexistente");
 	    
 	    assertNull(criaturaObtenida);
 	}

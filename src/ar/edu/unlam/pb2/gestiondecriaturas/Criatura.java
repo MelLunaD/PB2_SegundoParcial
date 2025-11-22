@@ -8,7 +8,6 @@ public abstract class Criatura implements InterfaceCriatura{
 	protected Integer energia;
 	protected Elementos afinidad;
 	protected Boolean estaInestable;
-	protected Elementos afinidadTemporal;
 	protected Integer maestriaMinimaRequerida;
 	
 	public Criatura(String nombre, Integer energia, Elementos afinidad, Integer maestriaMinima) {
@@ -69,9 +68,6 @@ public abstract class Criatura implements InterfaceCriatura{
     
     @Override
     public Elementos getAfinidad() {
-        if( this.afinidadTemporal != null ) {
-            return this.afinidadTemporal;
-        }
         return this.afinidad;
     }
 	
@@ -120,11 +116,6 @@ public abstract class Criatura implements InterfaceCriatura{
         }
 
         return true;
-    }
-    
-    @Override
-    public void setAfinidadTemporal(Elementos afinidadTemporal) {
-        this.afinidadTemporal = afinidadTemporal;
     }
 
     @Override

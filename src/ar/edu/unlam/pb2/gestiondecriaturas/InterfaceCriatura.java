@@ -12,7 +12,6 @@ public interface InterfaceCriatura {
     void aumentarEnergia(Integer cantidad);
     public void setEnergia(Integer energia);
     
-    void setAfinidadTemporal(Elementos afinidadTemporal);
     InterfaceCriatura getCriaturaBase();
     Integer getMaestriaMinimaRequerida();
 }
