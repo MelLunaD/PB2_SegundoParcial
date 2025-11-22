@@ -22,7 +22,7 @@ public class CriaturaDomesticada extends Criatura {
 
 	@Override
 	public void entrenar(Integer nivelDeMaestriaDelMaestro) {
-		this.aumentarEnergia(10);
+		super.aumentarEnergia(10);
 	}
 	
 	@Override

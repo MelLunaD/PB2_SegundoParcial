@@ -103,7 +103,7 @@ public abstract class Criatura implements InterfaceCriatura{
 		if (cantidad <= 0) {
 	        return;
 	    }
-	    
+
 	    int nuevaEnergia = this.energia + cantidad;
 	    this.energia = Math.min(nuevaEnergia, 200);
 	}

@@ -81,7 +81,7 @@ public class GestionDeCriaturas {
 		System.out.println("Interacción entre [" + criatura1.getNombre() + "] y [" + criatura2.getNombre() + "] completada.");
 	}
 
-	private InterfaceCriatura obtenerCriatura(String nombreMaestro, String nombreCriatura) {
+	public InterfaceCriatura obtenerCriatura(String nombreMaestro, String nombreCriatura) {
         MaestroElemental maestro = obtenerMaestro(nombreMaestro);
         
         if (maestro == null) {

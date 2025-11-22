@@ -37,6 +37,6 @@ public class CriaturaAncestral extends Criatura {
             );
         }
         
-        this.aumentarEnergia(10);
+        super.aumentarEnergia(10);
 	}
 }

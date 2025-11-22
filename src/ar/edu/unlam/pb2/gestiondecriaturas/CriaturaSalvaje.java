@@ -61,6 +61,6 @@ public class CriaturaSalvaje extends Criatura {
 			throw new IllegalStateException("La Criatura Salvaje excedió el límite de energía (200) durante el entrenamiento.");
 		}
 		
-		this.aumentarEnergia(aumento);
+		super.aumentarEnergia(aumento);
 	}
 }
