@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface InterfaceReportes {
-    List<InterfaceCriatura> listarTodasLasCriaturas();
+    List<InterfaceCriatura> obtenerTodasLasCriaturas();
     InterfaceCriatura obtenerCriaturaConMayorEnergia();
-    MaestroElemental determinarMaestroConMasTransformadas();
-    Map<Elementos, Integer> obtenerCantidadCriaturasPorAfinidad();
+    MaestroElemental obtenerMaestroConMasCriaturasTransformadas();
+    Map<Elementos, Integer> obtenerCantidadDeCriaturasPorAfinidad();
 }

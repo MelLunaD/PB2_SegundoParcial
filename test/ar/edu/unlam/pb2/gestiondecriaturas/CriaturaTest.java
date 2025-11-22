@@ -126,7 +126,9 @@ public class CriaturaTest {
 	@Test
 	public void pacificarEnProduccionDebeSerExitosoCuandoRandomDevuelveTrue() {
 	    Random randomFalso = new Random() {
-	        @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
 	        public boolean nextBoolean() {
 	            return true;
 	        }
@@ -143,7 +145,9 @@ public class CriaturaTest {
 	@Test
 	public void pacificarEnProduccionDebeFallarCuandoRandomDevuelveFalse() {
 	    Random randomFalso = new Random() {
-	        @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
 	        public boolean nextBoolean() {
 	            return false;
 	        }
